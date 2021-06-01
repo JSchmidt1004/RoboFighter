@@ -13,10 +13,11 @@ public class GameController : MonoBehaviour
 
     public eState State { get; set; } = eState.Title;
 
-    GameController instance;
-    public GameController Instance { get { return instance; } }
+    static GameController instance;
+    public static GameController Instance { get { return instance; } }
 
-    //public Robot[] = new Robot[2];
+    public Robot[] robots = new Robot[2];
+    public List<Robot> allBots = new List<Robot>();
 
     void Awake()
     {
@@ -41,8 +42,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //public void GetOtherRobot(Robot current)
-    //{
-
-    //}
+    public Robot GetOtherRobot(Robot current)
+    {
+        if (current == robots[0]) return robots[1];
+        else if (current == robots[1]) return robots[0];
+        return null;
+    }
 }
