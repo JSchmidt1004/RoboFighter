@@ -10,10 +10,19 @@ public class Modifier : Action
     {
         //attackTime, other things
     }
+    enum eEffectType
+    {
+        Buff, Debuff, Neutral
+    }
 
+    private void Start()
+    {
+        type = eType.Modifier;
+    }
 
     public override void Apply()
     {
-        throw new System.NotImplementedException();
+        cooldownTimer = 0;
+        Debug.Log(name + " used.");
     }
 }

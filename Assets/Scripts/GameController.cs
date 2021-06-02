@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     }
 
     public eState State { get; set; } = eState.Title;
+    public bool debugLogs = true;
 
     static GameController instance;
     public static GameController Instance { get { return instance; } }

@@ -18,6 +18,12 @@ public class Robot : MonoBehaviour
     float actionTime = 1.5f;
     float actionTimer = 0.0f;
 
+    bool debugLog;
+
+    private void Start()
+    {
+        debugLog = GameController.Instance.debugLogs;
+    }
     private void Update()
     {
         //do nothing until we do shit
@@ -33,8 +39,9 @@ public class Robot : MonoBehaviour
         }
     }
 
-    public void OnHurt(float damage, string effect = "none")
+    public void OnHurt(float damage, List<string> effects = null)
     {
+        if(debugLog) Debug.Log("Attempted Damage");
         //check if you list contains a defense item
         bool containsDefense = false;
         foreach(Action action in actions)
@@ -69,6 +76,11 @@ public class Robot : MonoBehaviour
         if(!blockedDamage)
         {
             health -= damage;
+            if(effects != null)
+            {
+                //add status effects
+                if (debugLog) Debug.Log(name + " took " + damage + " damage!");
+            }
             if (health <= 0)
             {
                 OnDeath();
@@ -77,36 +89,57 @@ public class Robot : MonoBehaviour
         else
         {
             //shield popup or something
-            Debug.Log("Defended attack!");
+            if (debugLog) Debug.Log("Defended attack!");
         }
 
     }
 
     public void OnAct()
     {
-        //choose an action that is not on cooldown
-        bool[] checkedActions = new bool[actions.Length];
-        int index = Random.Range(0, actions.Length);
-        bool done = true;
-        //should make sure that all actions are not
-        while (actions[index].type == Action.eType.Defend && !actions[index].OffCooldown() && (stamina - actions[index].stamCost) < 0.0f)
+        if (!FindValidAction(out Action validAction))
         {
-            checkedActions[index] = true;
-            index = Random.Range(0, actions.Length);
-            done = true;
-            foreach(bool b in checkedActions)
-            {
-                if (!b) done = false;
-            }
-            if (done) break;
+            if (debugLog) Debug.Log("No valid actions ready to be taken!");
+            return;
         }
-        if (done) return;
-
+        else
+        {
+            if (debugLog) Debug.Log("Valid action found!");
+            validAction.Apply();
+        }
     }
     public void OnDeath()
     {
         //death anim or effect
         //Die screen
+
+        //GameController.OnFinish(); ??
+    }
+
+    bool FindValidAction(out Action valid)
+    {
+        bool found = false;
+        valid = null;
+
+        //find a valid action
+        List<Action> validActions = new List<Action>();
+        //add all valid actions into a list
+        foreach(Action action in actions)
+        {
+            if (action.type != Action.eType.Defend && action.OffCooldown() && action.stamCost <= stamina)
+            {
+                validActions.Add(action);
+            }
+            
+        }
+        if (validActions.Count == 0) return found;
+        else
+        {
+            found = true;
+            int index = Random.Range(0, validActions.Count);
+            valid = actions[index];
+        }
+
+        return found;
     }
 
 }
