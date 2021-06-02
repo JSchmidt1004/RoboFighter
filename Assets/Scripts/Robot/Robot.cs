@@ -77,6 +77,7 @@ public class Robot : MonoBehaviour
         else
         {
             //shield popup or something
+            Debug.Log("Defended attack!");
         }
 
     }
