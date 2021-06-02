@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 
     public Robot[] robots = new Robot[2];
 
+
     void Awake()
     {
         instance = this;
@@ -41,8 +42,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void GetOtherRobot(Robot current)
-    {
 
+    public Robot GetOtherRobot(Robot current)
+    {
+        if (current == robots[0]) return robots[1];
+        else if (current == robots[1]) return robots[0];
+        return null;
     }
 }
