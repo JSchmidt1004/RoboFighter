@@ -12,12 +12,13 @@ public class GameController : MonoBehaviour
     }
 
     public eState State { get; set; } = eState.Title;
+    public bool debugLogs = true;
 
     static GameController instance;
     public static GameController Instance { get { return instance; } }
 
     public Robot[] robots = new Robot[2];
-    public List<Robot> allBots = new List<Robot>();
+
 
     void Awake()
     {
@@ -41,6 +42,7 @@ public class GameController : MonoBehaviour
                 break;
         }
     }
+
 
     public Robot GetOtherRobot(Robot current)
     {

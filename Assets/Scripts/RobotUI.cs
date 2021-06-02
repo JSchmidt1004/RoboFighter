@@ -9,7 +9,7 @@ public class RobotUI : MonoBehaviour
 
     public void OnSelectBot()
     {
-        foreach(Robot robot in GameController.Instance.allBots)
+        foreach(Robot robot in GameController.Instance.robots)
         {
             if (robot.name == nameText.text)
             {
