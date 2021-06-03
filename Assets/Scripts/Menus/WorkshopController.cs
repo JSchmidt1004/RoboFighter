@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class WorkshopController : MonoBehaviour
 {
     public WorkshopBot currentBot;
-    public BotLib botLib;
+    public BotLibrary botLib;
     public AllActions actionsLib;
     public MenuController menuController;
 
@@ -41,12 +41,34 @@ public class WorkshopController : MonoBehaviour
             Debug.Log("Need more than one module");
             return;
         }
-
-        //check if they have at least one module
-        botLib.bots.Add(new Robot(currentBot));
+        currentBot.name = nameInput.text;
+        WorkshopBot newBot = currentBot;
+        botLib.bots.Add(newBot);
         menuController.LoadMainMenu();
         //Load Main menu
 
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Y))
+        {
+            foreach(WorkshopBot robot in botLib.bots)
+            {
+                if(robot == null)
+                {
+                    Debug.Log("robot is null?");
+                    continue;
+                }
+                Debug.Log("Name : " + robot.name);
+                Debug.Log("Actions");
+                foreach(Action  action in robot.actions)
+                {
+                    Debug.Log(action.name);
+                }
+
+            }
+        }
     }
 
     public void AddModule(Action action)
