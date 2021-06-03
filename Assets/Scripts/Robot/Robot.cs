@@ -20,6 +20,39 @@ public class Robot : MonoBehaviour
 
     bool debugLog;
 
+    public Robot(string name, float hp, float stam, List<Action> moves, float sps, float actionTime)
+    {
+        this.name = name;
+        this.actionTime = actionTime;
+        health = hp;
+        stamina = stam;
+        stamPerSec = sps;
+
+        //populate action array
+        actions = new Action[moves.Count];
+        for (int i = 0; i < moves.Count-1; i++)
+        {
+            actions[i] = moves[i];
+        }
+    }
+    public Robot(WorkshopBot botTemplate)
+    {
+        this.name = botTemplate.name;
+        this.actionTime = botTemplate.actionTime;
+        health = botTemplate.health;
+        stamina = botTemplate.stamina;
+        stamPerSec = botTemplate.stamPerSec;
+
+        //populate action array
+        actions = new Action[botTemplate.actions.Count];
+        for (int i = 0; i < botTemplate.actions.Count - 1; i++)
+        {
+            actions[i] = botTemplate.actions[i];
+        }
+
+        GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/{botTemplate.animatorName}");
+    }
+
     private void Start()
     {
         debugLog = GameController.Instance.debugLogs;

@@ -9,7 +9,15 @@ public class Defend : Action
     {
         type = eType.Defend;
     }
-    
+
+    public Defend(string name, string desc, float chance, float cooldown = 1.5f, float stamCost = 5.0f)
+    {
+        this.name = name;
+        //this.desc = desc;
+        cooldownTime = cooldown;
+        this.stamCost = stamCost;
+        chanceOfProc = chance;
+    }
 
     public override void Apply()
     {
