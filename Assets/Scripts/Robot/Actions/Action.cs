@@ -18,7 +18,9 @@ public abstract class Action : MonoBehaviour
     public eTarget target;
     public float stamCost = 1.0f;
     public float cooldownTime = 2.0f;
-    public float cooldownTimer = 0;
+    protected float cooldownTimer = 0;
+
+    public Sprite icon;
 
 
     public abstract void Apply();

@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpriteChooseButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Image image;
+    Sprite sprite;
+    public string animName = "Pete/PeteController";
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        sprite = image.sprite;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : Action
 {
-    float damage;
+    public float damage;
     List<string> effects;
 
     public Attack(string name, string desc, float damage,  float cooldown = 1.5f, float stamCost = 5.0f )

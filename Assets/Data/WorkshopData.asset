@@ -15,6 +15,10 @@ MonoBehaviour:
   name: 
   health: 50
   stamina: 50
-  actions: []
+  actions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   stamPerSec: 0.5
-  animator: {fileID: 0}
+  actionTime: 1.5
+  animatorName: Pete/PeteController

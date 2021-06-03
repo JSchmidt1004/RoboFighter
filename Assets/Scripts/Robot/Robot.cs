@@ -50,7 +50,7 @@ public class Robot : MonoBehaviour
             actions[i] = botTemplate.actions[i];
         }
 
-        GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/{botTemplate.animatorName}");
+        //GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/{botTemplate.animatorName}");
     }
 
     private void Start()

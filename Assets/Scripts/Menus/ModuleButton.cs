@@ -11,19 +11,18 @@ public class ModuleButton : MonoBehaviour
 
     public string moduleName;
 
-    AllActions allActions;
-    Action action;
+    public Action action;
 
     void Start()
     {
-        allActions = AllActions.Instance;
-        action = allActions.GetAction(moduleName);
+        nameTextBox.text = action.name;
+        icon.sprite = action.icon;
     }
 
-    public void OnAddModule()
+    public void SetDisplay()
     {
-        //add module to the tentative list of modules for the robot
-            //if list has an empty spot, add it
-            //if it doesnt have an empty spot, display that there is no spot
+        nameTextBox.text = action.name;
+        //Debug.Log("Action name = " + action.name);
+
     }
 }
