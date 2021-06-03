@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour
     static GameController instance;
     public static GameController Instance { get { return instance; } }
 
+    public Transform playerSpot;
+    public Transform enemySpot;
+
     public Robot[] robots = new Robot[2];
 
 
