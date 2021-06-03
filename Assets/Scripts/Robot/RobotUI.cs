@@ -10,15 +10,14 @@ public class RobotUI : MonoBehaviour
     public Slider health;
     public Slider stamina;
     public Animator animator;
+    public CooldownUI abilityPrefab;
 
-    public void SetName(string name)
+    List<CooldownUI> abilityUIs = new List<CooldownUI>();
+
+    public void Setup(string name, string animatorPath)
     {
         nameText.name = name;
-    }
-    
-    public void SetAnimator(string path)
-    {
-        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animations/" + path);
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animations/" + animatorPath);
     }
 
     public void UpdateHealth(float health)
