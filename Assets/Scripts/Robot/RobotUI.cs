@@ -25,6 +25,7 @@ public class RobotUI : MonoBehaviour
     {
         CooldownUI cooldownUI = Instantiate(abilityPrefab, abilityPanel.transform);
         cooldownUI.abilityImage.sprite = ability.icon;
+        ability.cooldownUI = cooldownUI;
         return cooldownUI;
     }
 

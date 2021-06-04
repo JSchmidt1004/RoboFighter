@@ -22,6 +22,7 @@ public class Defend : Action
     public override void Apply()
     {
         cooldownTimer = 0;
+        cooldownUI.Cooldown(cooldownTime);
     }
 
 

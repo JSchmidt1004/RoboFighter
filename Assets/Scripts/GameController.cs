@@ -87,17 +87,22 @@ public class GameController : MonoBehaviour
         robots[1].opponent = robots[0];
 
         //UI
-        playerRobot.GetComponent<RobotUI>().Setup(robots[0].name, robots[0].animPath);
-        playerRobot.GetComponent<RobotUI>().Setup(robots[1].name, robots[1].animPath);
+        RobotUI playerUI = playerRobot.GetComponent<RobotUI>();
+        RobotUI cpuUI = cpuRobot.GetComponent<RobotUI>();
+        playerUI.Setup(robots[0].name, robots[0].animPath);
+        cpuUI.Setup(robots[1].name, robots[1].animPath);
 
+        //add all action ui
+        foreach(Action action in robots[0].actions)
+        {
+            playerUI.AddAbility(action);
+        }
+        foreach(Action action in robots[1].actions)
+        {
+            cpuUI.AddAbility(action);
+        }
         
-        
-
-        /*
-         * go through every action
-         * set cooldown ui to new UI 
-         *
-         */
+        //fuck bitches
 
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     public string name;
+    public float maxHp;
+    public float maxStam;
     public float health;
     public float stamina;
 
@@ -30,6 +32,8 @@ public class Robot : MonoBehaviour
         this.name = name;
         this.actionTime = actionTime;
         health = hp;
+        maxHp = hp;
+        maxStam = stam;
         stamina = stam;
         stamPerSec = sps;
 
@@ -47,6 +51,9 @@ public class Robot : MonoBehaviour
         health = botTemplate.health;
         stamina = botTemplate.stamina;
         stamPerSec = botTemplate.stamPerSec;
+        maxHp = botTemplate.health;
+        maxStam = botTemplate.stamina;
+
 
         //populate action array
         actions = new Action[botTemplate.actions.Count];
@@ -65,6 +72,8 @@ public class Robot : MonoBehaviour
         health = botTemplate.health;
         stamina = botTemplate.stamina;
         stamPerSec = botTemplate.stamPerSec;
+        maxHp = botTemplate.health;
+        maxStam = botTemplate.stamina;
 
         //populate action array
         actions = new Action[botTemplate.actions.Length];
@@ -164,7 +173,15 @@ public class Robot : MonoBehaviour
         else
         {
             if (debugLog) Debug.Log("Valid action found!");
-            validAction.Apply();
+            if(validAction.type == Action.eType.Attack)
+            {
+                ((Attack)validAction).ApplyDamage(opponent);
+            }
+            else
+            {
+                validAction.Apply();
+
+            }
         }
     }
     public void OnDeath()

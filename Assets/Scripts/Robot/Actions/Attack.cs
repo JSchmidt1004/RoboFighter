@@ -20,15 +20,17 @@ public class Attack : Action
         type = eType.Attack;
     }
 
-    public void Apply(Robot target)
+    public void ApplyDamage(Robot target)
     {
         //apply damage to other robot (onhurt(damage))
         target.OnHurt(damage);
         cooldownTimer = 0;
+        cooldownUI.Cooldown(cooldownTime);
+
     }
 
     public override void Apply()
     {
-        throw new System.NotImplementedException();
+
     }
 }
