@@ -21,9 +21,11 @@ public class RobotUI : MonoBehaviour
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animations/" + animatorPath);
     }
 
-    public CooldownUI AddAbility()
+    public CooldownUI AddAbility(Action ability)
     {
-        return Instantiate(abilityPrefab, abilityPanel.transform);
+        CooldownUI cooldownUI = Instantiate(abilityPrefab, abilityPanel.transform);
+        cooldownUI.abilityImage.sprite = ability.icon;
+        return cooldownUI;
     }
 
     public void UpdateHealth(float health)
