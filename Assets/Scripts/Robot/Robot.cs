@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Robot : MonoBehaviour
@@ -53,6 +54,12 @@ public class Robot : MonoBehaviour
         //GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/{botTemplate.animatorName}");
     }
 
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("Name : " + name);
+        return sb.ToString();
+    }
     private void Start()
     {
         debugLog = GameController.Instance.debugLogs;
