@@ -14,6 +14,7 @@ public abstract class Action : MonoBehaviour
         Self, Other, Both
     }
 
+    public CooldownUI cooldownUI;
     public eType type;
     public eTarget target;
     public float stamCost = 1.0f;

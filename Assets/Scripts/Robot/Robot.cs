@@ -13,11 +13,15 @@ public class Robot : MonoBehaviour
 
     public float stamPerSec;
 
+    public Robot opponent;
+
     float second = 1.0f;
     float secondTimer = 0;
 
     float actionTime = 1.5f;
     float actionTimer = 0.0f;
+
+    public string animPath;
 
     bool debugLog;
 
@@ -50,8 +54,24 @@ public class Robot : MonoBehaviour
         {
             actions[i] = botTemplate.actions[i];
         }
-
+        animPath = botTemplate.animatorName;
         //GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/{botTemplate.animatorName}");
+    }
+
+    public void OverwriteInfo(Robot botTemplate)
+    {
+        this.name = botTemplate.name;
+        this.actionTime = botTemplate.actionTime;
+        health = botTemplate.health;
+        stamina = botTemplate.stamina;
+        stamPerSec = botTemplate.stamPerSec;
+
+        //populate action array
+        actions = new Action[botTemplate.actions.Length];
+        for (int i = 0; i < botTemplate.actions.Length - 1; i++)
+        {
+            actions[i] = botTemplate.actions[i];
+        }
     }
 
     public override string ToString()
