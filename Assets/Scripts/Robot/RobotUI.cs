@@ -10,6 +10,7 @@ public class RobotUI : MonoBehaviour
     public Slider health;
     public Slider stamina;
     public Animator animator;
+    public GameObject abilityPanel;
     public CooldownUI abilityPrefab;
 
     List<CooldownUI> abilityUIs = new List<CooldownUI>();
@@ -18,6 +19,13 @@ public class RobotUI : MonoBehaviour
     {
         nameText.name = name;
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animations/" + animatorPath);
+    }
+
+    public CooldownUI AddAbility(Action ability)
+    {
+        CooldownUI cooldownUI = Instantiate(abilityPrefab, abilityPanel.transform);
+        cooldownUI.abilityImage.sprite = ability.icon;
+        return cooldownUI;
     }
 
     public void UpdateHealth(float health)
