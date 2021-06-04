@@ -6,12 +6,13 @@ public class GameController : MonoBehaviour
 {
     public enum eState
     {
-        Title,
+        StartGame,
         LevelUp,
-        Fight
+        Fight,
+        FightEnd
     }
 
-    public eState State { get; set; } = eState.Title;
+    public eState State { get; set; } = eState.StartGame;
     public bool debugLogs = true;
 
     static GameController instance;
@@ -34,7 +35,8 @@ public class GameController : MonoBehaviour
     {
         switch (State)
         {
-            case eState.Title:
+            case eState.StartGame:
+                CreateFight();
                 State = eState.LevelUp;
                 break;
             case eState.LevelUp:
@@ -43,9 +45,18 @@ public class GameController : MonoBehaviour
             case eState.Fight:
 
                 break;
+            case eState.FightEnd:
+                break;
             default:
                 break;
         }
+    }
+
+    public void EndFight(Robot winner)
+    {
+        State = eState.FightEnd;
+        //enable winpanel
+        //set name on winpanel to winner
     }
 
 
@@ -56,7 +67,7 @@ public class GameController : MonoBehaviour
         return null;
     }
 
-    public void CreateFightUI()
+    public void CreateFight()
     {
         //find the bot library in scene
         BotLibrary bl = FindObjectOfType<BotLibrary>();
